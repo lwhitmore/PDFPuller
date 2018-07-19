@@ -24,8 +24,12 @@ hinder our program.
 """
 
 import PyPDF2    # This is the module we need
+import io   # For the output file
 
-"We need to read the pdf first, then extract text from the target page"
+"We need to read the pdf first, then extract text from the page(s)" 
+
+# Open/create a file to where our output will go
+out_file = io.open("2007_output.txt", encoding='utf-8', mode='a') 
 
 # Open the file and create a pdf reader object
 pdf_file = open('2007-1.pdf', 'rb')
@@ -48,13 +52,14 @@ while page < num_Pages:
     # print("this iteration\n")
     # print(this_page.extractText()) 
     page += 1 
-    if "RON" and "MON" and "TSI" and "CN" and "Paraffins" in this_page.extractText():
-        # print(this_page.extractText()) 
-        print("The properties were found on this page\n") 
+    # Identify and extract the info we want
+    if "Table1" and "n-Heptane" in this_page.extractText():
+        out_file.write(this_page.extractText()) 
 
 
 
-# Close file
+# Close files
+out_file.close() 
 pdf_file.close() 
 
 
