@@ -32,7 +32,7 @@ import io   # For the output file
 out_file = io.open("2007_output.txt", encoding='utf-8', mode='a') 
 
 # Open the file and create a pdf reader object
-pdf_file = open('2007-1.pdf', 'rb')
+pdf_file = open('2007-1.pdf', 'rb')     # 'rb' = 'read bytes' 
 pdf_reader = PyPDF2.PdfFileReader(pdf_file) 
 
 # print(pdf_reader.numPages) # Print to test if the # of pages is correct
@@ -55,7 +55,8 @@ while page < num_Pages:
     page += 1 
     # Identify and extract the info we want
     if "Table1" and "n-Heptane" in this_page.extractText():
-        out_file.write(this_page.extractText()) 
+        out_file.write(this_page.extractText())
+        # out_file.write(this_page) # doesn't work 
 
 
 
