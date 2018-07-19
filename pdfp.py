@@ -5,13 +5,21 @@ the need to convert the pdf file to a text file beforehand, therefore
 saving time. We will be using the Python PyPDF2 module to accomplish
 this task. 
 
+
 Installation: 
 
 pip install PyPDF2
 
 If there is some authentication and/or proxy error, try:
-
 sudo -E pip install PyPDF2
+
+
+Note: 
+
+The warning:
+"PdfReadWarning: Xref table not zero-indexed. ID numbers for objects will be corrected."
+is not a problem for our program. It may appear when reading the pdf, but does not 
+hinder our program. 
 
 """
 
@@ -37,10 +45,10 @@ page = 0 # the getPage function starts at 0, not 1
 # Iterate through the pages and extract text from the whole pdf :) 
 while page < num_Pages:
     this_page = pdf_reader.getPage(page)
-    print("this iteration\n")
+    # print("this iteration\n")
     # print(this_page.extractText()) 
     page += 1 
-    if "RON" and "MON" and "TSI" and "CN" in this_page.extractText():
+    if "RON" and "MON" and "TSI" and "CN" and "Paraffins" in this_page.extractText():
         # print(this_page.extractText()) 
         print("The properties were found on this page\n") 
 
