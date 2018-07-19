@@ -1,5 +1,7 @@
 """
 
+Purpose:
+
 In this file we will try writing the table data to a CSV with PDFTables as the 
 data we want is mostly all in tables! :) 
 
@@ -8,6 +10,7 @@ First, we need to create an account (which is free) at
 https://pdftables.com/join, then visit the API page to get an 
 API key. Then, we can send our PDF content to the website and
 write the response to a CSV file. 
+
 
 Note: Please make sure to use a new API key for each time the program runs. 
 
