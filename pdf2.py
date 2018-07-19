@@ -14,6 +14,7 @@ Reference: http://stanford.edu/~mgorkove/cgi-bin/rpython_tutorials/Using_Python_
 """
 
 import requests 
+import sys  # for the user input
 
 # Create a function to do what we want 
 """
@@ -30,13 +31,23 @@ How the function below works:
 2) 
 
 """
-def p2t(pdf_file, api_key, final_format, output_dir):
-    file_data = (pdf_file, open(pdf_file, 'rb')) 
-    files: {'f': file_data}  
-    api_url = "https://pdftables.com/api?key={0}&format={1}".format(api_key, final_format)
-    response = requests.post(api_url, files=files)
-    response.raise_for_status() 
-    with open(output_dir, 'wb') as f:
-        f.write(response.content) 
+
+"Prompt user for the values of the function parameters"
+
+user_file = raw_input("Enter the name/path of your pdf file: ")  
+user_api = raw_input("Enter your API key for PDFTables: ")
+user_format = raw_input("Enter the format of your output file: ")
+user_dir = raw_input("Enter the directory where your output file will be located: ")
+# print(user_file+"   "+user_api+"    "+user_format+"    "+user_dir)   
+
+
+# def p2t(pdf_file, api_key, final_format, output_dir):
+#     file_data = (pdf_file, open(pdf_file, 'rb')) 
+#     files: {'f': file_data}  
+#     api_url = "https://pdftables.com/api?key={0}&format={1}".format(api_key, final_format)
+#     response = requests.post(api_url, files=files)
+#     response.raise_for_status() 
+#     with open(output_dir, 'wb') as f:
+#         f.write(response.content) 
     
 
