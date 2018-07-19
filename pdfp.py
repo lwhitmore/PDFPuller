@@ -47,6 +47,7 @@ num_Pages = pdf_reader.numPages
 page = 0 # the getPage function starts at 0, not 1
 
 # Iterate through the pages and extract text from the whole pdf :) 
+"Go through all the pages and only write out pages from which we want text" 
 while page < num_Pages:
     this_page = pdf_reader.getPage(page)
     # print("this iteration\n")
