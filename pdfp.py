@@ -23,6 +23,17 @@ hinder our program.
 
 """
 
+"""
+
+This particular file pdfp.py is good for reading in a pdf file and 
+extracting text from the page(s) which have a particular word/phrase
+you are looking for. Example: If you don't know/remember which page(s)
+of the pdf contain the greeting "Hello World", then we can put the 
+greeting into our search criteria, and this program will extract text
+from the page(s) of the pdf file that contain the phrase. 
+
+"""
+
 import PyPDF2    # This is the module we need
 import io   # For the output file
 
