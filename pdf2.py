@@ -26,14 +26,21 @@ How the function below works:
 1) There are 4 parameters:
 
     I. pdf_file = the pdf file we want to extract text/data from 
+
     II. api_key = the api key from the PDFTables website
+
     III. final_format = the format of the final output file (we want CSV)
         --e.g. If we want a CSV file, type "csv". 
+        Please refer to https://pdftables.com/pdf-to-excel-api for more info. 
+
     IV. output_dir = the directory where the output file will be located. 
 
-2) Prompt the user for input into the function parameters
+2) Prompt the user for input into the function parameters 
 
-3) 
+3) The user's API key and choice of output file format will be used for 
+   0 and 1, respectively, in "api_url" of the function. 
+
+4) The response is written to the output file (right now we want a CSV file) 
 
 """
 
@@ -43,7 +50,6 @@ user_file = raw_input("Enter the name/path of your pdf file: ")
 user_api = raw_input("Enter your API key for PDFTables: ") 
 user_format = raw_input("Enter the format of your output file: ")
 user_dir = raw_input("Enter the directory where your output file will be located/name of the file: ")
-# print(user_file+"   "+user_api+"    "+user_format+"    "+user_dir) 
 
 
 "The function below is what we are using" 
