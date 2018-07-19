@@ -25,7 +25,25 @@ pdf_reader = PyPDF2.PdfFileReader(pdf_file)
 
 # print(pdf_reader.numPages) # Print to test if the # of pages is correct
 
-# Get a particular page from the reader object and extract the text
+# # Create a page object from a particular page from the reader object and extract the text
+# this_page = pdf_reader.getPage(5) 
+# print(this_page.extractText()) 
+
+"Let us try and extract text from the whole pdf so we don't need to go and check pages"
+num_Pages = pdf_reader.numPages 
+
+page = 0 # the getPage function starts at 0, not 1
+
+# Iterate through the pages and extract text
+if page < num_Pages:
+    this_page = pdf_reader.getPage(page)
+    # print(this_page.extractText()) 
+    page += 1 
+
+
+# Close file
+pdf_file.close() 
+
 
 
 
