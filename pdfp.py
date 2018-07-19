@@ -53,8 +53,6 @@ while page < num_Pages:
         out_file.write(this_page.extractText())
         # out_file.write(this_page) # doesn't work 
 
-
-
 # Close files
 out_file.close() 
 pdf_file.close() 
