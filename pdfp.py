@@ -34,11 +34,16 @@ num_Pages = pdf_reader.numPages
 
 page = 0 # the getPage function starts at 0, not 1
 
-# Iterate through the pages and extract text
-if page < num_Pages:
+# Iterate through the pages and extract text from the whole pdf :) 
+while page < num_Pages:
     this_page = pdf_reader.getPage(page)
+    print("this iteration\n")
     # print(this_page.extractText()) 
     page += 1 
+    if "RON" and "MON" and "TSI" and "CN" in this_page.extractText():
+        # print(this_page.extractText()) 
+        print("The properties were found on this page\n") 
+
 
 
 # Close file
