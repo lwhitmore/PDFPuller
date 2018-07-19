@@ -1,30 +1,5 @@
 """
 
-The purpose of this program is to extract data from a pdf file without 
-the need to convert the pdf file to a text file beforehand, therefore
-saving time. We will be using the Python PyPDF2 module to accomplish
-this task. 
-
-
-Installation: 
-
-pip install PyPDF2
-
-If there is some authentication and/or proxy error, try:
-sudo -E pip install PyPDF2
-
-
-Note: 
-
-The warning:
-"PdfReadWarning: Xref table not zero-indexed. ID numbers for objects will be corrected."
-is not a problem for our program. It may appear when reading the pdf, but does not 
-hinder our program. 
-
-"""
-
-"""
-
 This particular file pdfp.py is good for reading in a pdf file and 
 extracting text from the page(s) which have a particular word/phrase
 you are looking for. Example: If you don't know/remember which page(s)
