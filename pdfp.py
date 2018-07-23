@@ -16,30 +16,54 @@ This method works very well, HOWEVER, the output of the text in the
 resulting file may be funky. As such, I am working on seeing if I
 can use PDFTables to just create CSV files from the tables directly.
 
+UPDATE:
+
+The most viable and reliable option is to use PyPDF2. 
+
 """
 
 import PyPDF2    # This is the module we need
 import io   # For the output file
+import sys  # For user input 
+
+"""
+
+Prompt the user for input. 
+Ask the user: 
+
+1) for either the name of the input file or the path of the file
+
+2) for either the name of the output file or the path of the file
+
+3) if there is a specific page(s) they want to extract from
+
+4) if not, ask for some keywords to look through the pdf for pages to extract 
+
+"""
+
+input_file = raw_input("Please enter the name or path/directory of the pdf file to extract from: ") 
+out_name = raw_input("Please enter the name or path/directory of the file to create/add to for output: ") 
 
 "We need to read the pdf first, then extract text from the page(s)" 
 
 # Open/create a file to where our output will go
-out_file = io.open("2007_output.txt", encoding='utf-8', mode='a') 
+out_file = io.open(out_name, encoding='utf-8', mode='a')  
 
 # Open the file and create a pdf reader object
-pdf_file = open('2007-1.pdf', 'rb')     # 'rb' = 'read bytes' 
+pdf_file = open(input_file, 'rb')     # 'rb' = 'read bytes'  
 pdf_reader = PyPDF2.PdfFileReader(pdf_file) 
 
 # print(pdf_reader.numPages) # Print to test if the # of pages is correct
 
-# # Create a page object from a particular page from the reader object and extract the text
-# this_page = pdf_reader.getPage(5) 
-# print(this_page.extractText()) 
+"Uncomment and use the section below if the page(s) from the pdf that need to be extracted are known"
+# # Create a page object from a particular page from the reader object and extract the text 
+# this_page = pdf_reader.getPage(5)     # example page
+# out_file.write(this_page.extractText())
 
 "Let us try and extract text from the whole pdf so we don't need to go and check pages"
 num_Pages = pdf_reader.numPages 
 
-page = 0 # the getPage function starts at 0, not 1
+page = 0 # the getPage function starts at 0, not 1 
 
 # Iterate through the pages and extract text from the whole pdf :) 
 "Go through all the pages and only write out pages from which we want text" 
