@@ -19,6 +19,10 @@ Run pdfp.py by typing in the command line:
 
 python pdfp.py
 
+The program will either take in one page number to extract from the pdf, or it will 
+request one keyword (or two) to search for in the whole pdf and will extract the pages 
+that have the keyword(s).  
+
 
 ## Note: 
 
