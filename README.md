@@ -15,6 +15,10 @@ sudo -E pip install PyPDF2
 
 ## Usage:
 
+Please note that pdfcat is probably more useful for multiple input files, and
+pdfcat is part of PyPDF2:
+https://pythonhosted.org/PyPDF2/Easy%20Concatenation%20Script.html. 
+
 Run pdfp.py by typing in the command line:
 
 python pdfp.py
