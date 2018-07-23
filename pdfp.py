@@ -3,11 +3,15 @@
 Purpose: 
 
 This particular file pdfp.py is good for reading in a pdf file and 
-extracting text from the page(s) which have a particular word/phrase
-you are looking for. Example: If you don't know/remember which page(s)
-of the pdf contain the greeting "Hello World", then we can put the 
-greeting into our search criteria, and this program will extract text
-from the page(s) of the pdf file that contain the phrase. 
+extracting text from (1) the page(s) which have a particular word/phrase
+you are looking for or (2) the page you specfically want. 
+
+Example (1) : If you don't know/remember which page(s) of the pdf contain 
+the greeting "Hello World", then we can put the greeting into our search 
+criteria, and this program will extract text from the page(s) of the pdf 
+file that contain the phrase. 
+
+Example (2) : If you want page six of the pdf, input "6". 
 
 
 Important note:
@@ -35,7 +39,9 @@ Ask the user:
 
 2) for either the name of the output file or the path of the file
 
-3) if there is a specific page(s) they want to extract from
+3) if there is a specific page(s) they want to extract from (yes/no)
+
+    --> If yes, ask which specific page(s) 
 
 4) if not, ask for some keywords to look through the pdf for pages to extract 
 
@@ -53,30 +59,43 @@ out_file = io.open(out_name, encoding='utf-8', mode='a')
 pdf_file = open(input_file, 'rb')     # 'rb' = 'read bytes'  
 pdf_reader = PyPDF2.PdfFileReader(pdf_file) 
 
-# print(pdf_reader.numPages) # Print to test if the # of pages is correct
+# print(pdf_reader.numPages) # Print to test if the number of pages is correct 
 
-"Uncomment and use the section below if the page(s) from the pdf that need to be extracted are known"
-# # Create a page object from a particular page from the reader object and extract the text 
-# this_page = pdf_reader.getPage(5)     # example page
-# out_file.write(this_page.extractText())
+yn = raw_input("Is there a specific page you want to extract from the pdf? (Answer 'yes' or 'no'): ") 
+if yn == 'yes':
+    wanted_page = raw_input("Please enter the page number you want: ")  
+    if int(wanted_page) > 0:
+        actual_page = int(wanted_page) - 1   # Subtract 1, because the getPage function begins at 0 instead of 1 
+        this_page = pdf_reader.getPage(actual_page)
+        out_file.write(this_page.extractText()) 
+    
+elif yn == 'no':
+    search = raw_input("Please enter a specfic keyword to search for in the pdf (e.g. 'apple'): ") 
 
-"Let us try and extract text from the whole pdf so we don't need to go and check pages"
-num_Pages = pdf_reader.numPages 
+    more_words = raw_input("Is there another keyword you want to use? (Answer 'yes' or 'no'): ") 
 
-page = 0 # the getPage function starts at 0, not 1 
+    "Let us try and extract text from the whole pdf so we don't need to go and check pages"
+    num_Pages = pdf_reader.numPages 
+    page = 0 # the getPage function starts at 0, not 1 
 
-# Iterate through the pages and extract text from the whole pdf :) 
-"Go through all the pages and only write out pages from which we want text" 
-while page < num_Pages:
-    this_page = pdf_reader.getPage(page)
-    # print("this iteration\n")
-    # print(this_page.extractText()) 
-    page += 1 
-    # Identify and extract the info we want
-    if "Table1" and "n-Heptane" in this_page.extractText():
-        out_file.write(this_page.extractText())
-        # out_file.write(this_page) # doesn't work 
-
+    if more_words == 'yes': 
+        search2 = raw_input("Please enter another specific keyword to search for in the pdf: ") 
+        # Iterate through the pages and extract text from the whole pdf :) 
+        "Go through all the pages and only write out pages from which we want text" 
+        while page < num_Pages:
+            this_page = pdf_reader.getPage(page) 
+            page += 1 
+            # Identify and extract the info we want
+            if search and search2 in this_page.extractText():
+                out_file.write(this_page.extractText()) 
+                
+    elif more_words == 'no':
+        while page < num_Pages:
+            this_page = pdf_reader.getPage(page)
+            page += 1
+            if search in this_page.extractText(): 
+                out_file.write(this_page.extractText())  
+            
 # Close files
 out_file.close() 
 pdf_file.close() 
