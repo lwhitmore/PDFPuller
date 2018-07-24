@@ -9,3 +9,7 @@ of PyPDF2.
 
 """
 
+import PyPDF2    # This is the module we need
+import io   # For the output file
+import sys  # For user input 
+
