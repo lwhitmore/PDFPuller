@@ -15,3 +15,9 @@ With pdfcat, the script should be able to take in multiple pdf inputs to
 create one smaller pdf. 
 
 """
+
+from tabula import read_pdf
+
+df = read_pdf("2007-1.pdf")
+
+df    
