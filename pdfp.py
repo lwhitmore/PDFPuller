@@ -95,11 +95,22 @@ elif yn == 'no':
             page += 1
             if search in this_page.extractText(): 
                 out_file.write(this_page.extractText())  
-            
+                
 # Close files
 out_file.close() 
 pdf_file.close() 
 
+"""
 
+Format the generated text file:
 
+out_name is the name of the output file
+out_file is the output file object 
 
+"""
+
+f = open(out_name, 'r+') 
+for each in f:
+    for x in each:
+        if list.index(x) > 5:
+            print("List index of x greater than 5")
