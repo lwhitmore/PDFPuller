@@ -6,6 +6,7 @@ import sys  # For user input
 f = open('2007TEST', 'r+')  
 
 "Possible error fix: use an array rather than the each list for indices"
+"Need to find a way to insert into each string (i.e. into 'each')" 
 
 for each in f:
     for x in each:
@@ -14,6 +15,10 @@ for each in f:
         if i > 5:
             if '0' or '1' or '2' or '3' or '4' or '5' or '6' or '7' or '8' or '9' in each[i+1]:
                 if '0' or '1' or '2' or '3' or '4' or '5' or '6' or '7' or '8' or '9' not in each[i]:
-                    print("here is where the space should go") 
+                    "Use '\t' for tab spaces" 
+                    "Insert a tab space between the letter and number"
+                    each.insert(i, "\t") 
+    print(each) 
+ 
             
             

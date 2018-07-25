@@ -108,9 +108,3 @@ out_name is the name of the output file
 out_file is the output file object 
 
 """
-
-f = open(out_name, 'r+') 
-for each in f:
-    for x in each:
-        if list.index(x) > 5:
-            print("List index of x greater than 5")
